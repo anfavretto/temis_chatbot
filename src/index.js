@@ -11,8 +11,6 @@ watson.listAllLogs({})
     console.log(err)
   });
 
-  var porta = process.env.PORT || 8080;
-  app.listen(porta);
 
     // watson.createSession({
     //     assistant_id: assistantId
