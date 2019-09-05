@@ -1,4 +1,4 @@
-const AssistantV2 = require('ibm-watson/assistant/v2');
+const AssistantV2 = require('watson-developer-cloud/assistant/v2');
 const watsonAssistant = new AssistantV2({
   "apikey": "mOS2ZvGUPguUYrui_8jvu5J-guRmOoliqiAgDHqvhtG2",
   "iam_apikey_description": "Auto-generated for key 54368522-dade-40eb-975d-30c9e04166a3",
