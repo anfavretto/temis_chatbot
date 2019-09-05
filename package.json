@@ -1,5 +1,5 @@
 {
-  "name": "Temis chatbot",
+  "name": "temis",
   "version": "1.0.0",
   "description": "Têmis Chatbot para busca de pessoas desaparecidas",
   "main": "index.js",
