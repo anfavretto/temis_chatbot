@@ -7,7 +7,9 @@ const params = {
 
 watson.listLogs(params)
   .then(res => {
-    console.log(JSON.stringify(res, null, 2));
+    var contact = JSON.parse(res);
+    console.log(contact);
+    // console.log(JSON.stringify(res, null, 2));
   })
   .catch(err => {
     console.log(err)
