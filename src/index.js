@@ -8,8 +8,11 @@ const params = {
 watson.listLogs(params)
   .then(res => {
     var contact = JSON.parse(res);
-    console.log(contact);
-    // console.log(JSON.stringify(res, null, 2));
+    console.log(contact.toString());
+
+    var array = Object.keys(res).map(i => JSON.parse(res[Number(i)]));
+    console.log("array: " + array.toString());
+    console.log(JSON.stringify(res, null, 2));
   })
   .catch(err => {
     console.log(err)
