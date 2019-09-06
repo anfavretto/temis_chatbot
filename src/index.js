@@ -7,7 +7,7 @@ const params = {
 
 watson.listLogs(params)
   .then(res => {
-    console.log(JSON.stringify(res, null, 2));
+    // console.log(JSON.stringify(res, null, 2));
     const tamanho = res.logs.length;
     console.log("tamanho do array " + tamanho);
 
