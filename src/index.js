@@ -7,16 +7,22 @@ const params = {
 
 watson.listLogs(params)
   .then(res => {
-    var contact = JSON.parse(res);
-    console.log(contact.toString());
-
-    var array = Object.keys(res).map(i => JSON.parse(res[Number(i)]));
-    console.log("array: " + array.toString());
     console.log(JSON.stringify(res, null, 2));
+    const tamanho = res.logs.length;
+    console.log("tamanho do array " + tamanho);
+
+    console.log("primeiro conversation_id " + JSON.stringify(res.logs[0].conversation_id));
   })
   .catch(err => {
     console.log(err)
   });
+
+  const groupBy = key => array =>
+    array.reduce((objectsByKeyValue, obj) => {
+      const value = obj[key];
+      objectsByKeyValue[value] = (objectsByKeyValue[value] || []).concat(obj);
+      return objectsByKeyValue;
+    }, {});
 
 
     // watson.createSession({
