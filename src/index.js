@@ -1,5 +1,11 @@
 const bodyParser = require('body-parser');
 const watson = require('../src/watson/client-watson');
+var neo4j = require('neo4j-driver').v1;
+
+var graphenedbURL = process.env.GRAPHENEDB_BOLT_URL;
+var graphenedbUser = process.env.GRAPHENEDB_BOLT_USER;
+var graphenedbPass = process.env.GRAPHENEDB_BOLT_PASSWORD;
+var driver = neo4j.driver(graphenedbURL, neo4j.auth.basic(graphenedbUser, graphenedbPass));
 
 const params = {
   workspace_id: '4e65423d-2127-4a94-b6b0-27163c60896c'
@@ -17,12 +23,18 @@ watson.listLogs(params)
     console.log(err)
   });
 
-  const groupBy = key => array =>
-    array.reduce((objectsByKeyValue, obj) => {
-      const value = obj[key];
-      objectsByKeyValue[value] = (objectsByKeyValue[value] || []).concat(obj);
-      return objectsByKeyValue;
-    }, {});
+  var session = driver.session();
+  session.run("CREATE (n {hello: 'World'}) RETURN n.name")
+  .then(function(result) {
+      result.records.forEach(function(record) {
+          console.log(record)
+      });
+
+      session.close();
+  })
+  .catch(function(error) {
+      console.log(error);
+  });
 
 
     // watson.createSession({
