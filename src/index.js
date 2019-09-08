@@ -11,7 +11,7 @@ watson.listLogs(params)
     const tamanho = res.logs.length;
     console.log("tamanho do array " + tamanho);
 
-    console.log("primeiro conversation_id " + JSON.stringify(res.logs[0].conversation_id));
+    console.log("primeiro conversation_id " + JSON.stringify(res.logs[0].response.context.conversation_id));
   })
   .catch(err => {
     console.log(err)
