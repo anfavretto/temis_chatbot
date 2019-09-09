@@ -19,16 +19,13 @@ watson.listLogs(params)
     const tamanho = res.logs.length;
     console.log("tamanho do array " + tamanho);
 
-    console.log("primeiro conversation_id " + JSON.stringify(res.logs[0].response.context.conversation_id));
+    // console.log("primeiro conversation_id " + JSON.stringify(res.logs[0].response.context.conversation_id));
 
     var conversationsAboutCadastro = res.logs.filter((log) => {
       return log.response.intents.intent === "cadastro";
     });
 
     conversationsAboutCadastro.forEach(log => {
-      console.log("usuario: :" + log.request.input.text);
-      console.log("bot input: " + log.response.input.text);
-      console.log("output : " + log.response.output.text);
       var conversationId = log.response.context.conversation_id;
       if(conversations.indexOf(conversationId) < 1) {
         conversations.push(conversationId);
