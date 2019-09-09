@@ -38,7 +38,7 @@ watson.listLogs(params)
       });
       groups.push(current);
     });
-    console.log(groups);
+    console.log(groups.length);
   })
   .catch(err => {
     console.log(err)
