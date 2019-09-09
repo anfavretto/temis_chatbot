@@ -7,6 +7,8 @@ var graphenedbUser = process.env.GRAPHENEDB_BOLT_USER;
 var graphenedbPass = process.env.GRAPHENEDB_BOLT_PASSWORD;
 var driver = neo4j.driver(graphenedbURL, neo4j.auth.basic(graphenedbUser, graphenedbPass));
 
+const conversations = [];
+
 const params = {
   workspace_id: '4e65423d-2127-4a94-b6b0-27163c60896c'
 };
@@ -23,7 +25,20 @@ watson.listLogs(params)
       console.log("usuario: :" + log.request.input.text);
       console.log("bot input: " + log.response.input.text);
       console.log("output : " + log.response.output.text);
+      var conversationId = log.response.context.conversation_id;
+      if(conversations.indexOf(conversationId) < 1) {
+        conversations.push(conversationId);
+      }
     });
+
+    var groups = [];
+    conversations.forEach(conversation => {
+      var current = res.logs.filter((log) => {
+        return log.response.context.conversation_id === conversation;
+      });
+      groups.push(current);
+    });
+    console.log(groups);
   })
   .catch(err => {
     console.log(err)
