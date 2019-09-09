@@ -18,23 +18,29 @@ watson.listLogs(params)
     console.log("tamanho do array " + tamanho);
 
     console.log("primeiro conversation_id " + JSON.stringify(res.logs[0].response.context.conversation_id));
+
+    res.logs.forEach(log => {
+      console.log("usuario: :" + log.request.input.text);
+      console.log("bot input: " + log.response.input.text);
+      console.log("output : " + log.response.output.text);
+    });
   })
   .catch(err => {
     console.log(err)
   });
 
-  var session = driver.session();
-  session.run("CREATE (n {hello: 'World'}) RETURN n.name")
-  .then(function(result) {
-      result.records.forEach(function(record) {
-          console.log(record)
-      });
+  // var session = driver.session();
+  // session.run("CREATE (n {hello: 'World'}) RETURN n.name")
+  // .then(function(result) {
+  //     result.records.forEach(function(record) {
+  //         console.log(record)
+  //     });
 
-      session.close();
-  })
-  .catch(function(error) {
-      console.log(error);
-  });
+  //     session.close();
+  // })
+  // .catch(function(error) {
+  //     console.log(error);
+  // });
 
 
     // watson.createSession({
