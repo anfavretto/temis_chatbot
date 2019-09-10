@@ -25,6 +25,8 @@ watson.listLogs(params)
       return log.response.intents.intent === "cadastro";
     });
 
+
+
     conversationsAboutCadastro.forEach(log => {
       var conversationId = log.response.context.conversation_id;
       if(conversations.indexOf(conversationId) < 1) {
@@ -34,7 +36,7 @@ watson.listLogs(params)
 
     var groups = [];
     conversations.forEach(conversation => {
-      var current = conversationsAboutCadastro.filter((log) => {
+      var current = res.logs.filter((log) => {
         return log.response.context.conversation_id === conversation;
       });
       groups.push(current);
