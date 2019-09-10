@@ -21,13 +21,7 @@ watson.listLogs(params)
 
     // console.log("primeiro conversation_id " + JSON.stringify(res.logs[0].response.context.conversation_id));
 
-    var conversationsAboutCadastro = res.logs.filter((log) => {
-      return log.response.intents.intent === "cadastro";
-    });
-
-    console.log(" cadastro talks: " + conversationsAboutCadastro.length)
-
-    conversationsAboutCadastro.forEach(log => {
+    res.logs.forEach(log => {
       var conversationId = log.response.context.conversation_id;
       if(conversations.indexOf(conversationId) < 1) {
         conversations.push(conversationId);
