@@ -38,7 +38,9 @@ watson.listLogs(params)
     console.log(groups.length);
 
     groups.forEach((group) => {
-      console.log("GROUP: "+ JSON.stringify(group.request));
+      group.forEach((msg) => {
+        console.log("GROUP: "+ JSON.stringify(msg.request));
+      })
       // console.log(" intent: " + group.response.intents.length + " , " + group.response.intents[group.response.intents.length - 1].intent);
       // console.log(" entities " + group.response.entities.length);
     });
