@@ -25,7 +25,7 @@ watson.listLogs(params)
       return log.response.intents.intent === "cadastro";
     });
 
-
+    console.log(" cadastro talks: " + conversationsAboutCadastro.length)
 
     conversationsAboutCadastro.forEach(log => {
       var conversationId = log.response.context.conversation_id;
