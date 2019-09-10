@@ -36,6 +36,12 @@ watson.listLogs(params)
       groups.push(current);
     });
     console.log(groups.length);
+
+    groups.forEach((group) => {
+      console.log("input: "+ group.request.input.text);
+      console.log(" intent: " + group.response.intents.length + " , " + group.response.intents[group.response.intents.length - 1].intent);
+      console.log(" entities " + group.response.entities.length);
+    });
   })
   .catch(err => {
     console.log(err)
