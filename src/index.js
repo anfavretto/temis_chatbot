@@ -35,12 +35,19 @@ watson.listLogs(params)
       });
       groups.push(current);
     });
-    console.log(groups.length);
+    console.log("number of groups: " + groups.length);
 
     groups.forEach((group) => {
-      group.forEach((msg) => {
-        console.log("GROUP: "+ JSON.stringify(msg.request));
-      })
+      group.sort(function(a,b){
+        // Turn your strings into dates, and then subtract them
+        // to get a value that is either negative, positive, or zero.
+        return new Date(b.response_timestamp) - new Date(a.response_timestamp);
+      });
+      console.log("numbers of messages of this group: " + group.length);
+      console.log("context of last message: " + group[group.length - 1].request.context);
+      // group.forEach((msg) => {
+      //   console.log("GROUP: "+ JSON.stringify(msg.request));
+      // })
       // console.log(" intent: " + group.response.intents.length + " , " + group.response.intents[group.response.intents.length - 1].intent);
       // console.log(" entities " + group.response.entities.length);
     });
