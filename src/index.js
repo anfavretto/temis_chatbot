@@ -45,7 +45,7 @@ watson.listLogs(params)
       });
       console.log("numbers of messages of this group: " + group.length);
       console.log("context of last message: " + JSON.stringify(group[0].request));
-      var context = group[0].request;
+      var context = group[0].request.context;
       var nome = context.nome;
       var tamanhoCabelo = context.tamanhoCabelo;
       var cabeloCor = context.cabelo;
