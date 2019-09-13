@@ -44,7 +44,7 @@ watson.listLogs(params)
         return new Date(b.response_timestamp) - new Date(a.response_timestamp);
       });
       console.log("numbers of messages of this group: " + group.length);
-      console.log("context of last message: " + JSON.stringify(group[0].request));
+      console.log("context of last message: " + JSON.stringify(group[0].response));
       // group.forEach((msg) => {
       //   console.log("GROUP: "+ JSON.stringify(msg.request));
       // })
