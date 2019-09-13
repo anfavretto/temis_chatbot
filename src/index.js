@@ -52,7 +52,7 @@ watson.listLogs(params)
         var corCabelo = context.cabelo;
         var tipoCabelo = context.tipoCabelo;
         var corOlhos = context.olhos;
-        var peleCor = context.pele;
+        var corPele = context.pele;
         var boletimOcorrencia = context.boletimOcorrencia;
         var roupa = context.roupa;
         var pai = context.pai;
@@ -83,7 +83,7 @@ watson.listLogs(params)
         var possivelMotivoDesap = context.possivel_motivo;
 
         console.log("INFORMAÇÕES: nome: "+ nome + " , tamanho cabelo: " + tamanhoCabelo + " cor cabelo: " + corCabelo + " , olhos cor: " + corOlhos
-        + " , pele cor: " + peleCor + " , BO: " + boletimOcorrencia + " , roupa: " + roupa + " , pai: " + pai + " , mae: " + mae); 
+        + " , pele cor: " + corPele + " , BO: " + boletimOcorrencia + " , roupa: " + roupa + " , pai: " + pai + " , mae: " + mae); 
 
         // SALVAR NO NEO4J
         var session = driver.session();
