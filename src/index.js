@@ -51,7 +51,7 @@ watson.listLogs(params)
         var tamanhoCabelo = context.tamanhoCabelo;
         var corCabelo = context.cabelo;
         var tipoCabelo = context.tipoCabelo;
-        var olhosCor = context.olhos;
+        var corOlhos = context.olhos;
         var peleCor = context.pele;
         var boletimOcorrencia = context.boletimOcorrencia;
         var roupa = context.roupa;
@@ -82,8 +82,38 @@ watson.listLogs(params)
         var ultimoLocalVisto = context.local_visto;
         var possivelMotivoDesap = context.possivel_motivo;
 
-        console.log("INFORMAÇÕES: nome: "+ nome + " , tamanho cabelo: " + tamanhoCabelo + " cor cabelo: " + corCabelo + " , olhos cor: " + olhosCor
+        console.log("INFORMAÇÕES: nome: "+ nome + " , tamanho cabelo: " + tamanhoCabelo + " cor cabelo: " + corCabelo + " , olhos cor: " + corOlhos
         + " , pele cor: " + peleCor + " , BO: " + boletimOcorrencia + " , roupa: " + roupa + " , pai: " + pai + " , mae: " + mae); 
+
+        // SALVAR NO NEO4J
+        var session = driver.session();
+        session.run("CREATE (Pessoa {nomeCompleto:'" + nome +
+                                    "'comprimentoCabelo: '" + tamanhoCabelo + 
+                                    "',corCabelo:'" + corCabelo + 
+                                    "',tipoCabelo:'" + tipoCabelo +
+                                    "',corOlhos:'" + corOlhos + 
+                                    "',corPele:'" + corPele + 
+                                    "',temCicatrizMarcaSinal:'" + temCicatriz + 
+                                    "',descricaoCicatrizMarcaSinal:'" + descricaoCicatriz +
+                                    "',localCicatrizMarcaSinal:'" + localCicatriz + 
+                                    "',temTatuagem:'" + temTatuagem +
+                                    "',descricaoTatuagem:'" + descricaoTatuagem + 
+                                    "',localTatuagem:'" + localTatuagem +
+                                    "',nomeMae:'" + mae +
+                                    "',nomePai:'" + pai +
+                                    "' '}) RETURN Pessoa")
+        .then(function(result) {
+            result.records.forEach(function(record) {
+                console.log(record)
+            });
+
+            session.close();
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+
+        // FALTA DA PESSOA: dataNascimento: 16/10/1995 genero: F
       }
       
     });
