@@ -15,6 +15,7 @@ const params = {
 
 watson.listLogs(params)
   .then(res => {
+    var session = driver.session();
     // console.log(JSON.stringify(res, null, 2));
     const tamanho = res.logs.length;
     console.log("tamanho do array " + tamanho);
@@ -86,8 +87,7 @@ watson.listLogs(params)
         + " , pele cor: " + corPele + " , BO: " + boletimOcorrencia + " , roupa: " + roupa + " , pai: " + pai + " , mae: " + mae); 
 
         // SALVAR NO NEO4J
-        var session = driver.session();
-        session.run("CREATE (Pessoa {nomeCompleto:'" + nome +
+        session.run("CREATE (n:Pessoa {nomeCompleto:'" + nome +
                                     "',comprimentoCabelo:'" + tamanhoCabelo + 
                                     "',corCabelo:'" + corCabelo + 
                                     "',tipoCabelo:'" + tipoCabelo +
@@ -101,7 +101,7 @@ watson.listLogs(params)
                                     "',localTatuagem:'" + localTatuagem +
                                     "',nomeMae:'" + mae +
                                     "',nomePai:'" + pai +
-                                    "'}) RETURN Pessoa")
+                                    "'}) RETURN n")
         .then(function(result) {
             result.records.forEach(function(record) {
                 console.log(record)
