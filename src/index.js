@@ -88,7 +88,7 @@ watson.listLogs(params)
         // SALVAR NO NEO4J
         var session = driver.session();
         session.run("CREATE (Pessoa {nomeCompleto:'" + nome +
-                                    "'comprimentoCabelo: '" + tamanhoCabelo + 
+                                    "',comprimentoCabelo:'" + tamanhoCabelo + 
                                     "',corCabelo:'" + corCabelo + 
                                     "',tipoCabelo:'" + tipoCabelo +
                                     "',corOlhos:'" + corOlhos + 
@@ -101,7 +101,7 @@ watson.listLogs(params)
                                     "',localTatuagem:'" + localTatuagem +
                                     "',nomeMae:'" + mae +
                                     "',nomePai:'" + pai +
-                                    "' '}) RETURN Pessoa")
+                                    "'}) RETURN Pessoa")
         .then(function(result) {
             result.records.forEach(function(record) {
                 console.log(record)
