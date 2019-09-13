@@ -47,21 +47,45 @@ watson.listLogs(params)
       console.log("context of last message: " + JSON.stringify(group[0].request));
       var context = group[0].request.context;
       var nome = context.nome;
-      var tamanhoCabelo = context.tamanhoCabelo;
-      var cabeloCor = context.cabelo;
-      var olhosCor = context.olhos;
-      var peleCor = context.pele;
-      var boletimOcorrencia = context.boletimOcorrencia;
-      var roupa = context.roupa;
-      var pai = context.pai;
-      var mae = context.mae;
-      console.log("INFORMAÇÕES: nome: "+ nome + " , tamanho cabelo: " + tamanhoCabelo + " cor cabelo: " + cabeloCor + " , olhos cor: " + olhosCor
-       + " , pele cor: " + peleCor + " , BO: " + boletimOcorrencia + " , roupa: " + roupa + " , pai: " + pai + " , mae: " + mae); 
-      // group.forEach((msg) => {
-      //   console.log("GROUP: "+ JSON.stringify(msg.request));
-      // })
-      // console.log(" intent: " + group.response.intents.length + " , " + group.response.intents[group.response.intents.length - 1].intent);
-      // console.log(" entities " + group.response.entities.length);
+      if (nome != undefined) {
+        var tamanhoCabelo = context.tamanhoCabelo;
+        var corCabelo = context.cabelo;
+        var tipoCabelo = context.tipoCabelo;
+        var olhosCor = context.olhos;
+        var peleCor = context.pele;
+        var boletimOcorrencia = context.boletimOcorrencia;
+        var roupa = context.roupa;
+        var pai = context.pai;
+        var mae = context.mae;
+        var dataDesaparecimento = context.date;
+        var temCicatriz = context.tem_cicatriz;
+        var localCicatriz = context.local_cicatriz;
+        var descricaoCicatriz = context.descricao_cicatriz;
+        var temTatuagem = context.tem_tatuagem;
+        var localTatuagem = context.local_tatuagem;
+        var descricaoTatuagem = context.descricao_tatuagem;
+        var jaDesapareceuAnteriormente = context.ja_desapareceu;
+        var motivoDesapAnterior = context.motivo_desap_anterior;
+        var emailContato = context.email_contato;
+        var telefoneContato = context.telefone_contato;
+        var nomeContato = context.nome_contato;
+        var nomeAcompanhante = context.acomp_nome;
+        var relacionamentoAcomp = context.relacionamento_acomp;
+        var roupasAcomp = context.roupas_acomp;
+        var estavaEmVeiculo = context.estava_veiculo;
+        var tipoVeiculo = context.tipo_veiculo;
+        var marcaVeiculo = context.marca_veiculo;
+        var modeloVeiculo = context.modelo_veiculo;
+        var corVeiculo = context.cor_veiculo;
+        var placaVeiculo = context.placa_veiculo;
+        var caracteristicaVeiculo = context.caracteristica_veiculo;
+        var ultimoLocalVisto = context.local_visto;
+        var possivelMotivoDesap = context.possivel_motivo;
+
+        console.log("INFORMAÇÕES: nome: "+ nome + " , tamanho cabelo: " + tamanhoCabelo + " cor cabelo: " + corCabelo + " , olhos cor: " + olhosCor
+        + " , pele cor: " + peleCor + " , BO: " + boletimOcorrencia + " , roupa: " + roupa + " , pai: " + pai + " , mae: " + mae); 
+      }
+      
     });
   })
   .catch(err => {
