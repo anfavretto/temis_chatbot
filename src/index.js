@@ -45,6 +45,18 @@ watson.listLogs(params)
       });
       console.log("numbers of messages of this group: " + group.length);
       console.log("context of last message: " + JSON.stringify(group[0].request));
+      var context = group[0].request;
+      var nome = context.nome;
+      var tamanhoCabelo = context.tamanhoCabelo;
+      var cabeloCor = context.cabelo;
+      var olhosCor = context.olhos;
+      var peleCor = context.pele;
+      var boletimOcorrencia = context.boletimOcorrencia;
+      var roupa = context.roupa;
+      var pai = context.pai;
+      var mae = context.mae;
+      console.log("INFORMAÇÕES: nome: "+ nome + " , tamanho cabelo: " + tamanhoCabelo + " cor cabelo: " + cabeloCor + " , olhos cor: " + olhosCor
+       + " , pele cor: " + peleCor + " , BO: " + boletimOcorrencia + " , roupa: " + roupa + " , pai: " + pai + " , mae: " + mae); 
       // group.forEach((msg) => {
       //   console.log("GROUP: "+ JSON.stringify(msg.request));
       // })
