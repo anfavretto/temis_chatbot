@@ -90,7 +90,7 @@ watson.listLogs(params)
         console.log("INFORMAÇÕES: nome: "+ nome + " , tamanho cabelo: " + tamanhoCabelo + " cor cabelo: " + corCabelo + " , olhos cor: " + corOlhos
         + " , pele cor: " + corPele + " , BO: " + boletimOcorrencia + " , roupa: " + roupa + " , pai: " + pai + " , mae: " + mae); 
 
-        // SALVAR NO NEO4J
+        // SALVAR PESSOA
         session.run("CREATE (n:Pessoa {nomeCompleto:'" + nome +
                                     "',comprimentoCabelo:'" + tamanhoCabelo + 
                                     "',corCabelo:'" + corCabelo + 
@@ -143,39 +143,43 @@ watson.listLogs(params)
         });
 
       // SALVAR ACOMPANHANTE
-      session.run("CREATE (n:Acompanhante {nomeCompleto:'" + nomeAcompanhante +
+      if(nomeAcompanhante != undefined && nomeAcompanhante !== "") {
+        session.run("CREATE (n:Acompanhante {nomeCompleto:'" + nomeAcompanhante +
           "',relacionamento:'" + relacionamentoAcomp + 
           "',roupa:'" + roupasAcomp + 
-        "'}) RETURN n")
-      .then(function(result) {
-        result.records.forEach(function(record) {
-          console.log(record)
-        });
+          "'}) RETURN n")
+        .then(function(result) {
+          result.records.forEach(function(record) {
+            console.log(record)
+          });
 
-        session.close();
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+          session.close();
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+      }
 
       // SALVAR VEICULO
-      session.run("CREATE (n:Veiculo {tipo:'" + tipoVeiculo +
+      if (placaVeiculo !== undefined && tipoCabelo !== undefined) {
+        session.run("CREATE (n:Veiculo {tipo:'" + tipoVeiculo +
           "',placa:'" + placaVeiculo + 
           "',modelo:'" + modeloVeiculo + 
           "',cor:'" + corVeiculo + 
           "',marca:'" + marcaVeiculo + 
           "',caracteristicaMarcante:'" + caracteristicaVeiculo + 
-        "'}) RETURN n")
-      .then(function(result) {
-        result.records.forEach(function(record) {
-          console.log(record)
-        });
+          "'}) RETURN n")
+        .then(function(result) {
+          result.records.forEach(function(record) {
+            console.log(record)
+          });
 
-        session.close();
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+          session.close();
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+      }
 
       // SALVAR CONTATO
       session.run("CREATE (n:Contato {nome:'" + nomeContato +
