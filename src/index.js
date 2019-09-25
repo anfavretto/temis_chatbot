@@ -200,5 +200,6 @@ watson.listLogs(params)
         console.log(error);
       });
     }
+  }
   )}
 );
