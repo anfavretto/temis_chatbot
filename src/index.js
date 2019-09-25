@@ -91,69 +91,71 @@ watson.listLogs(params)
         + " , pele cor: " + corPele + " , BO: " + boletimOcorrencia + " , roupa: " + roupa + " , pai: " + pai + " , mae: " + mae); 
 
         // SALVAR PESSOA
-        session.run("CREATE (n:Pessoa {nomeCompleto:'" + nome +
-                                    "',comprimentoCabelo:'" + tamanhoCabelo + 
-                                    "',corCabelo:'" + corCabelo + 
-                                    "',tipoCabelo:'" + tipoCabelo +
-                                    "',corOlhos:'" + corOlhos + 
-                                    "',corPele:'" + corPele + 
-                                    "',temCicatrizMarcaSinal:'" + temCicatriz + 
-                                    "',descricaoCicatrizMarcaSinal:'" + descricaoCicatriz +
-                                    "',localCicatrizMarcaSinal:'" + localCicatriz + 
-                                    "',temTatuagem:'" + temTatuagem +
-                                    "',descricaoTatuagem:'" + descricaoTatuagem + 
-                                    "',localTatuagem:'" + localTatuagem +
-                                    "',nomeMae:'" + mae +
-                                    "',nomePai:'" + pai +
-                                    "',genero:'" + genero + 
-                                    "',dataNascimento:'" + nascimento + 
-                                  "'}) RETURN n")
+        session.run("MATCH (n:Pessoa) WHERE n.nomeCompleto='" + nome + "' RETURN n")
         .then(function(result) {
-            result.records.forEach(function(record) {
-                console.log(record)
+          if (result.records.length === 0){
+            session.run("CREATE (n:Pessoa {nomeCompleto:'" + nome +
+                        "',comprimentoCabelo:'" + tamanhoCabelo + 
+                        "',corCabelo:'" + corCabelo + 
+                        "',tipoCabelo:'" + tipoCabelo +
+                        "',corOlhos:'" + corOlhos + 
+                        "',corPele:'" + corPele + 
+                        "',temCicatrizMarcaSinal:'" + temCicatriz + 
+                        "',descricaoCicatrizMarcaSinal:'" + descricaoCicatriz +
+                        "',localCicatrizMarcaSinal:'" + localCicatriz + 
+                        "',temTatuagem:'" + temTatuagem +
+                        "',descricaoTatuagem:'" + descricaoTatuagem + 
+                        "',localTatuagem:'" + localTatuagem +
+                        "',nomeMae:'" + mae +
+                        "',nomePai:'" + pai +
+                        "',genero:'" + genero + 
+                        "',dataNascimento:'" + nascimento + 
+                        "'}) RETURN n")
+            .catch(function(error) {
+              console.log(error);
             });
-
-            session.close();
-        })
-        .catch(function(error) {
-            console.log(error);
-        });
-      }
+          }
+      })
+      .catch(function(error) {
+          console.log(error);
+      });
       // SALVAR DESAPARECIMENTO
-      session.run("CREATE (n:Desaparecimento {boletimOcorrencia:'" + boletimOcorrencia +
-                                    "',data:'" + dataDesaparecimento + 
-                                    "',horario:'" + horarioDesap + 
-                                    "',roupa:'" + roupa +
-                                    "',ultimoLocalAvistado:'" + ultimoLocalVisto + 
-                                    "',estavaAcompanhado:'" + estavaAcompanhado + 
-                                    "',estavaEmUmVeiculo:'" + estavaEmVeiculo + 
-                                    "',jaDesapareceuAnteriormente:'" + jaDesapareceuAnteriormente +
-                                    "',motivoDesaparecimentoAnterior:'" + motivoDesapAnterior + 
-                                    "',possivelMotivo:'" + possivelMotivoDesap +
-                                  "'}) RETURN n")
+      session.run("MATCH (n:Desaparecimento) WHERE n.boletimOcorrencia='" + boletimOcorrencia + "' RETURN n")
         .then(function(result) {
-            result.records.forEach(function(record) {
-                console.log(record)
+          if (result.records.length === 0){
+            session.run("CREATE (n:Desaparecimento {boletimOcorrencia:'" + boletimOcorrencia +
+                        "',data:'" + dataDesaparecimento + 
+                        "',horario:'" + horarioDesap + 
+                        "',roupa:'" + roupa +
+                        "',ultimoLocalAvistado:'" + ultimoLocalVisto + 
+                        "',estavaAcompanhado:'" + estavaAcompanhado + 
+                        "',estavaEmUmVeiculo:'" + estavaEmVeiculo + 
+                        "',jaDesapareceuAnteriormente:'" + jaDesapareceuAnteriormente +
+                        "',motivoDesaparecimentoAnterior:'" + motivoDesapAnterior + 
+                        "',possivelMotivo:'" + possivelMotivoDesap +
+                      "'}) RETURN n")
+            .catch(function(error) {
+                console.log(error);
             });
-
-            session.close();
+          }
         })
         .catch(function(error) {
-            console.log(error);
+          console.log(error);
         });
 
       // SALVAR ACOMPANHANTE
       if(nomeAcompanhante != undefined && nomeAcompanhante !== "") {
-        session.run("CREATE (n:Acompanhante {nomeCompleto:'" + nomeAcompanhante +
-          "',relacionamento:'" + relacionamentoAcomp + 
-          "',roupa:'" + roupasAcomp + 
-          "'}) RETURN n")
+        session.run("MATCH (n:Acompanhante) WHERE n.nomeCompleto='" + nomeAcompanhante + "' RETURN n")
         .then(function(result) {
-          result.records.forEach(function(record) {
-            console.log(record)
-          });
-
-          session.close();
+          if (result.records.length === 0){
+            session.run("CREATE (n:Acompanhante {nomeCompleto:'" + nomeAcompanhante +
+              "',relacionamento:'" + relacionamentoAcomp + 
+              "',roupa:'" + roupasAcomp + 
+              "'}) RETURN n")
+            .catch(function(error) {
+              console.log(error);
+            });
+          }
         })
         .catch(function(error) {
           console.log(error);
@@ -162,19 +164,20 @@ watson.listLogs(params)
 
       // SALVAR VEICULO
       if (placaVeiculo !== undefined && tipoCabelo !== undefined) {
-        session.run("CREATE (n:Veiculo {tipo:'" + tipoVeiculo +
-          "',placa:'" + placaVeiculo + 
-          "',modelo:'" + modeloVeiculo + 
-          "',cor:'" + corVeiculo + 
-          "',marca:'" + marcaVeiculo + 
-          "',caracteristicaMarcante:'" + caracteristicaVeiculo + 
-          "'}) RETURN n")
+        session.run("MATCH (n:Veiculo) WHERE n.placa='" + placaVeiculo + "' AND n.tipo='"+ tipoVeiculo +"' AND n.modelo='"+ modeloVeiculo+"' RETURN n")
         .then(function(result) {
-          result.records.forEach(function(record) {
-            console.log(record)
-          });
-
-          session.close();
+          if (result.records.length === 0){
+            session.run("CREATE (n:Veiculo {tipo:'" + tipoVeiculo +
+              "',placa:'" + placaVeiculo + 
+              "',modelo:'" + modeloVeiculo + 
+              "',cor:'" + corVeiculo + 
+              "',marca:'" + marcaVeiculo + 
+              "',caracteristicaMarcante:'" + caracteristicaVeiculo + 
+              "'}) RETURN n")
+            .catch(function(error) {
+              console.log(error);
+            });
+          }
         })
         .catch(function(error) {
           console.log(error);
