@@ -8,15 +8,15 @@ var graphenedbURL = process.env.GRAPHENEDB_BOLT_URL;
 var graphenedbUser = process.env.GRAPHENEDB_BOLT_USER;
 var graphenedbPass = process.env.GRAPHENEDB_BOLT_PASSWORD;
 var driver = neo4j.driver(graphenedbURL, neo4j.auth.basic(graphenedbUser, graphenedbPass));
-// const app = express();
+const app = express();
 
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(cors());
 
-// app.get('/fim/', (req, res) => {
-//   saveConversations();
-// });
+app.get('/', function(req, res) {
+  res.send('hello world');
+});
 
 
 // function saveConversations(){
