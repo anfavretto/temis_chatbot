@@ -96,6 +96,7 @@ function saveConversations(){
           var genero = context.genero;
           var estavaAcompanhado = context.estava_acompanhada;
           var horarioDesap = context.time;
+          var foto = context.foto;
 
           console.log("INFORMAÇÕES: nome: "+ nome + " , tamanho cabelo: " + tamanhoCabelo + " cor cabelo: " + corCabelo + " , olhos cor: " + corOlhos
           + " , pele cor: " + corPele + " , BO: " + boletimOcorrencia + " , roupa: " + roupa + " , pai: " + pai + " , mae: " + mae); 
@@ -198,6 +199,13 @@ function saveConversations(){
             .catch(function(error) {
               console.log(error);
             });
+
+            // SALVAR FOTO
+            session.run("CREATE (n:Fotografia {url:'" + foto +"'}) RETURN n")
+            .catch(function(error) {
+              console.log(error);
+            });
+
             session.close();
           }
         })
