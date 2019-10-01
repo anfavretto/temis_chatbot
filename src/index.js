@@ -14,7 +14,7 @@ const app = express();
 // app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(cors());
 
-app.get('/', function(req, res) {
+app.post('/', function(req, res) {
   saveConversations();
 }).listen(process.env.PORT || 5000);
 
