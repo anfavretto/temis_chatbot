@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
-app.post('/fim/', (req, res) => {
+app.get('/fim/', (req, res) => {
   saveConversations();
 });
 
