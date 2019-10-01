@@ -15,11 +15,11 @@ const app = express();
 // app.use(cors());
 
 app.get('/', function(req, res) {
-  res.send('hello world');
+  saveConversations();
 }).listen(process.env.PORT || 5000);
 
 
-// function saveConversations(){
+function saveConversations(){
   const conversations = [];
 
   const params = {
@@ -209,4 +209,4 @@ app.get('/', function(req, res) {
     }
     )}
   );
-// }
+}
