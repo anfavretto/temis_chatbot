@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Aline",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -16,5 +16,14 @@
     "express": "^4.17.1",
     "neo4j-driver": "^1.7.6",
     "watson-developer-cloud": "^4.0.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anfavretto/temis_chatbot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/anfavretto/temis_chatbot/issues"
+  },
+  "homepage": "https://github.com/anfavretto/temis_chatbot#readme"
 }
