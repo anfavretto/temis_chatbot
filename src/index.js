@@ -1,18 +1,12 @@
-const bodyParser = require('body-parser');
 const express = require('express');
 const watson = require('../src/watson/client-watson');
 var neo4j = require('neo4j-driver').v1;
-var cors = require('cors');
 
 var graphenedbURL = process.env.GRAPHENEDB_BOLT_URL;
 var graphenedbUser = process.env.GRAPHENEDB_BOLT_USER;
 var graphenedbPass = process.env.GRAPHENEDB_BOLT_PASSWORD;
 var driver = neo4j.driver(graphenedbURL, neo4j.auth.basic(graphenedbUser, graphenedbPass));
 const app = express();
-
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(cors());
 
 app.post('/', function(req, res) {
   saveConversations();
@@ -29,8 +23,6 @@ function saveConversations(){
   watson.listLogs(params)
     .then(res => {
       var session = driver.session();
-      const tamanho = res.logs.length;
-      console.log("tamanho do array " + tamanho);
 
       res.logs.forEach(log => {
         var conversationId = log.response.context.conversation_id;
@@ -46,7 +38,6 @@ function saveConversations(){
         });
         groups.push(current);
       });
-      console.log("number of groups: " + groups.length);
 
       groups.forEach((group) => {
         group.sort(function(a,b){
@@ -54,8 +45,6 @@ function saveConversations(){
           // to get a value that is either negative, positive, or zero.
           return new Date(b.response_timestamp) - new Date(a.response_timestamp);
         });
-        console.log("numbers of messages of this group: " + group.length);
-        console.log("context of last message: " + JSON.stringify(group[0].request));
         var context = group[0].request.context;
         var nome = context.nome;
         if (nome != undefined) {
